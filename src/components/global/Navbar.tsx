@@ -14,6 +14,7 @@ import QuizIcon from "@mui/icons-material/Quiz";
 
 import { GlobalContext } from "../../contexts/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
+import { color } from "@mui/system";
 
 function Navbar() {
   const { theme, setTheme } = React.useContext(GlobalContext)!;
@@ -23,15 +24,38 @@ function Navbar() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
+  // const navButtonStyle = {
+  //   width: "2em",
+  //   height: "2em",
+  //   borderRadius: "50%",
+  // };
   const navButtonStyle = {
     width: "2em",
     height: "2em",
     borderRadius: "50%",
+    color: (theme) =>
+      theme.palette.mode === "dark"
+        ? theme.palette.text.primary
+        : theme.palette.primary.main,
   };
 
   return (
     <Box sx={{ width: "100%" }}>
-      <AppBar position="fixed" sx={{ bottom: 0, top: "auto" }}>
+      {/* <AppBar position="fixed" sx={{ bottom: 0, top: "auto" }}> */}
+      <AppBar
+        position="fixed"
+        elevation={0} // removes shadow
+        sx={(theme) => ({
+          bottom: 0,
+          top: "auto",
+          backgroundColor: theme.palette.background.default, // blend with page
+          borderTop: `1px solid ${
+            theme.palette.mode === "dark"
+              ? "#3a3a3a" // light gray for dark mode
+              : theme.palette.primary.main // blue for light mode
+          }`,
+        })}
+      >
         <Toolbar
           sx={{
             display: "flex",
@@ -39,6 +63,7 @@ function Navbar() {
             alignItems: "center",
           }}
         >
+          {/* Dictionary */}
           <IconButton
             color="inherit"
             sx={{
@@ -48,6 +73,7 @@ function Navbar() {
             <TranslateIcon />
           </IconButton>
 
+          {/* Study Flashcards */}
           <IconButton
             color="inherit"
             sx={{
@@ -57,6 +83,7 @@ function Navbar() {
             <CollectionsBookmarkIcon />
           </IconButton>
 
+          {/* Home Page */}
           <IconButton
             color="inherit"
             sx={{
@@ -66,6 +93,7 @@ function Navbar() {
             <HomeOutlinedIcon />
           </IconButton>
 
+          {/* Quiz Flashcards */}
           <IconButton
             color="inherit"
             sx={{
@@ -75,6 +103,7 @@ function Navbar() {
             <QuizIcon />
           </IconButton>
 
+          {/* Toggle Theme */}
           <IconButton
             color="inherit"
             onClick={toggleTheme}
