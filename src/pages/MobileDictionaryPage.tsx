@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Navbar from '../components/global/Navbar';
 
-function MobileHomepage() {
+function MobileDictionaryPage() {
   return (
   <>
     <Navbar />
@@ -9,4 +9,4 @@ function MobileHomepage() {
   );
 }
 
-export default MobileHomepage;
+export default MobileDictionaryPage;
