@@ -20,6 +20,10 @@ function Navbar() {
   const { theme, setTheme } = React.useContext(GlobalContext)!;
   // const navigate = useNavigate();
 
+  React.useEffect(() => {
+    localStorage.setItem("theme", theme)
+  }, [theme])
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
