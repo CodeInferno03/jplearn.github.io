@@ -7,7 +7,7 @@ function MobileRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/jplearn/" element={<MobileHomepage />} />
+        <Route path="/" element={<MobileHomepage />} />
       </Routes>
     </BrowserRouter>
 
