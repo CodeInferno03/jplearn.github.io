@@ -7,7 +7,7 @@ function DesktopRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<DesktopHomepage />} />
+        <Route path="/jplearn/" element={<DesktopHomepage />} />
       </Routes>
     </BrowserRouter>
 

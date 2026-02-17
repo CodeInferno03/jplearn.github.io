@@ -30,7 +30,7 @@ function Navbar() {
   };
 
   return (
-    <Box>
+    <Box sx={{ width: "100%" }}>
       <AppBar position="fixed" sx={{ bottom: 0, top: "auto" }}>
         <Toolbar
           sx={{
