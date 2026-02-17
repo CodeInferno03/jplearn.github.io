@@ -1,11 +1,15 @@
-import { BrowserRouter } from "react-router-dom";
-import AppRouter from "./app/router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import Homepage from "./pages/Homepage";
+import { useMobileLayout } from "./hooks/useMobileLayout";
+import MobileRoutes from "./routes/MobileRoutes";
 
 function App() {
+  const isMobile = useMobileLayout();
+
   return (
-    <BrowserRouter>
-      <AppRouter />
-    </BrowserRouter>
+    <>
+      {isMobile ? <MobileRoutes /> : <></> }
+    </>
   );
 }
 
