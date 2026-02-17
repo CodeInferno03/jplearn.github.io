@@ -4,7 +4,7 @@ import Navbar from '../components/global/Navbar';
 function MobileHomepage() {
   return (
   <>
-    <Navbar />
+    <div>Home Page</div>
   </>
   );
 }

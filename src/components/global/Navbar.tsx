@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const { theme, setTheme } = React.useContext(GlobalContext)!;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
