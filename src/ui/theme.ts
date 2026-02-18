@@ -4,14 +4,23 @@ export const getTheme = (mode: "light" | "dark") =>
   createTheme({
     palette: {
       mode,
-      ...(mode === "dark" && {
+      ...(mode === "dark" ? {
         background: {
-          default: "#242424",
+          default: "#020202",
           paper: "#242424",
         },
         text: {
           primary: "rgba(255, 255, 255, 0.87)",
           secondary: "rgba(255, 255, 255, 0.6)",
+        },
+      } : {
+        background: {
+          default: "#f1f1f1",
+          paper: "#fff",
+        },
+        text: {
+          primary: "rgba(0,0,0, 0.87)",
+          secondary: "rgba(87, 87, 87, 0.2)",
         },
       }),
     },

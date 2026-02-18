@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DesktopHomepage from "../pages/DesktopHomepage";
+import DesktopHomepage from "../pages/desktop/DesktopHomepage";
 
 function DesktopRoutes() {
 

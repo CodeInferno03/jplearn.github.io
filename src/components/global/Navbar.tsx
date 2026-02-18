@@ -11,28 +11,35 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 import QuizIcon from "@mui/icons-material/Quiz";
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import Tooltip from "@mui/material/Tooltip";
 
 import { GlobalContext } from "../../contexts/GlobalContextProvider";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { color } from "@mui/system";
 
 function Navbar() {
-  const { theme, setTheme } = React.useContext(GlobalContext)!;
-  // const navigate = useNavigate();
+  const icons = [
+    {
+      tooltip: "Dictionary",
+      icon: <TranslateIcon fontSize="large" />,
+      destination: "/dictionary",
+      ariaLabel: "Go to dictionary",
+    },
+    {
+      tooltip: "Home",
+      icon: <HomeOutlinedIcon fontSize="large" />,
+      destination: "/",
+      ariaLabel: "Go to home page",
+    },
+    {
+      tooltip: "Flashcards",
+      icon: <AutoStoriesIcon fontSize="large" />,
+      destination: "/flashcards",
+      ariaLabel: "Go to flashcards page",
+    },
+  ];
 
-  React.useEffect(() => {
-    localStorage.setItem("theme", theme)
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
-
-  // const navButtonStyle = {
-  //   width: "2em",
-  //   height: "2em",
-  //   borderRadius: "50%",
-  // };
   const navButtonStyle = {
     width: "2em",
     height: "2em",
@@ -45,7 +52,6 @@ function Navbar() {
 
   return (
     <Box sx={{ width: "100%" }}>
-      {/* <AppBar position="fixed" sx={{ bottom: 0, top: "auto" }}> */}
       <AppBar
         position="fixed"
         elevation={0} // removes shadow
@@ -67,56 +73,21 @@ function Navbar() {
             alignItems: "center",
           }}
         >
-          {/* Dictionary */}
-          <IconButton
-            color="inherit"
-            sx={{
-              ...navButtonStyle,
-            }}
-          >
-            <TranslateIcon />
-          </IconButton>
-
-          {/* Study Flashcards */}
-          <IconButton
-            color="inherit"
-            sx={{
-              ...navButtonStyle,
-            }}
-          >
-            <CollectionsBookmarkIcon />
-          </IconButton>
-
-          {/* Home Page */}
-          <IconButton
-            color="inherit"
-            sx={{
-              ...navButtonStyle,
-            }}
-          >
-            <HomeOutlinedIcon />
-          </IconButton>
-
-          {/* Quiz Flashcards */}
-          <IconButton
-            color="inherit"
-            sx={{
-              ...navButtonStyle,
-            }}
-          >
-            <QuizIcon />
-          </IconButton>
-
-          {/* Toggle Theme */}
-          <IconButton
-            color="inherit"
-            onClick={toggleTheme}
-            sx={{
-              ...navButtonStyle,
-            }}
-          >
-            {theme === "light" ? <LightModeIcon /> : <DarkModeIcon />}
-          </IconButton>
+          {icons.map((details, i) => (
+            <Tooltip key={i} title={details.tooltip}>
+              <NavLink to={details.destination}>
+                <IconButton
+                  color="inherit"
+                  aria-label={details.ariaLabel}
+                  sx={{
+                    ...navButtonStyle,
+                  }}
+                >
+                  {details.icon}
+                </IconButton>
+              </NavLink>
+            </Tooltip>
+          ))}
         </Toolbar>
       </AppBar>
     </Box>

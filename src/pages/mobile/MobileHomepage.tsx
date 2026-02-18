@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Navbar from '../components/global/Navbar';
+import Navbar from '../../components/global/Navbar';
+import Home from '../../components/homepage/Home';
 
 function MobileHomepage() {
   return (
   <>
-    <div>Home Page</div>
+    <Home />
   </>
   );
 }
