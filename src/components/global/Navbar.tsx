@@ -19,22 +19,24 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { color } from "@mui/system";
 
 function Navbar() {
+  const iconFontSize = "large";
+
   const icons = [
     {
       tooltip: "Dictionary",
-      icon: <TranslateIcon fontSize="large" />,
+      icon: <TranslateIcon fontSize={iconFontSize} />,
       destination: "/dictionary",
       ariaLabel: "Go to dictionary",
     },
     {
       tooltip: "Home",
-      icon: <HomeOutlinedIcon fontSize="large" />,
+      icon: <HomeOutlinedIcon fontSize={iconFontSize} />,
       destination: "/",
       ariaLabel: "Go to home page",
     },
     {
       tooltip: "Flashcards",
-      icon: <AutoStoriesIcon fontSize="large" />,
+      icon: <AutoStoriesIcon fontSize={iconFontSize} />,
       destination: "/flashcards",
       ariaLabel: "Go to flashcards page",
     },
@@ -56,11 +58,7 @@ function Navbar() {
           bottom: 0,
           top: "auto",
           backgroundColor: theme.palette.background.default, // blend with page
-          borderTop: `1px solid ${
-            theme.palette.mode === "dark"
-              ? "#3a3a3a" // light gray for dark mode
-              : "#000" // blue for light mode
-          }`,
+          borderTop: `1px solid ${theme.palette.text.primary}`,
         })}
       >
         <Toolbar
