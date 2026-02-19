@@ -3,6 +3,7 @@ import Navbar from "../../components/global/Navbar";
 import { GlobalContext } from "../../contexts/GlobalContextProvider";
 import { useSearchParams } from "react-router-dom";
 import { formatLevel, reformatLevel } from "../../utils/formatLevel";
+import ReturnButton from "../../components/flashcards/ReturnButton";
 
 function MobileQuizPage() {
   const { flashcardLevel, setFlashcardLevel } =
@@ -21,7 +22,7 @@ function MobileQuizPage() {
 
   return (
     <>
-      <div>Quiz</div>
+      <ReturnButton destination="/flashcards" />
     </>
   );
 }

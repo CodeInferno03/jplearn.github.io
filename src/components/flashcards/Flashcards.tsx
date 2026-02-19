@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import StudyFlashcard from "./StudyFlashcard";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
@@ -34,7 +33,7 @@ function Flashcards() {
     "Grade 5",
     "Grade 6",
     "Grade 8",
-    "Joyou",
+    "Jouyou",
     "Jinmeiyou",
     "Kyouiku",
     "Heisig",
@@ -82,6 +81,11 @@ function Flashcards() {
                   maxHeight: "25em", // makes it scrollable
                   borderBottomRightRadius: "1em",
                   borderBottomLeftRadius: "1em",
+                  scrollbarWidth: "none",
+                  msOverflowStyle: "none",
+                  "&::-webkit-scrollbar": {
+                    display: "none",
+                  },
                 },
               },
             },
