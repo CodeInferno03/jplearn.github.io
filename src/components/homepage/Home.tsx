@@ -10,7 +10,7 @@ function Home() {
   const navigate = useNavigate();
 
   const homePaperStyle = {
-    borderRadius: "2.75em",
+    borderRadius: "1em",
     alignSelf: "center",
     height: "12em",
     width: "80%",

@@ -13,11 +13,11 @@ function MobileRoutes() {
       <ThemeButton />
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
-          <Route path="/" element={<MobileHomepage />} />
+          <Route path="" element={<MobileHomepage />} />
           <Route path="/dictionary" element={<MobileDictionaryPage />} />
-          <Route path="/study" element={<MobileStudyPage />} />
-          <Route path="/quiz" element={<MobileQuizPage />} />
           <Route path="/flashcards" element={<MobileFlashcardsPage />} />
+          <Route path="/flashcards/study" element={<MobileStudyPage />} />
+          <Route path="/flashcards/quiz" element={<MobileQuizPage />} />
         </Routes>
       </BrowserRouter>
     </>

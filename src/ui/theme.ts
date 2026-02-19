@@ -20,7 +20,7 @@ export const getTheme = (mode: "light" | "dark") =>
         },
         text: {
           primary: "rgba(0,0,0, 0.87)",
-          secondary: "rgba(87, 87, 87, 0.2)",
+          secondary: "rgba(87, 87, 87, 0.5)",
         },
       }),
     },

@@ -7,6 +7,8 @@ type ThemeMode = "light" | "dark";
 interface GlobalContextInterface {
   theme: "light" | "dark";
   setTheme: React.Dispatch<React.SetStateAction<"light" | "dark">>;
+  flashcardLevel: string;
+  setFlashcardLevel: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface GlobalContextProviderProps {
@@ -36,8 +38,15 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
   const [theme, setTheme] = React.useState<"light" | "dark">(presetTheme);
   const visualTheme = React.useMemo(() => getTheme(theme), [theme]);
 
+  const [flashcardLevel, setFlashcardLevel] = React.useState<string>(
+    sessionStorage.getItem("kanjiLevel") ?? "JLPT N5",
+  );
+  const KANJI_API = "http://kanjiapi.dev/v1/";
+
   return (
-    <GlobalContext.Provider value={{ theme, setTheme }}>
+    <GlobalContext.Provider
+      value={{ theme, setTheme, flashcardLevel, setFlashcardLevel }}
+    >
       <ThemeProvider theme={visualTheme}>
         <CssBaseline />
         {children}
