@@ -9,6 +9,7 @@ interface GlobalContextInterface {
   setTheme: React.Dispatch<React.SetStateAction<"light" | "dark">>;
   flashcardLevel: string;
   setFlashcardLevel: React.Dispatch<React.SetStateAction<string>>;
+  KANJI_API: string;
 }
 
 interface GlobalContextProviderProps {
@@ -39,13 +40,15 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
   const visualTheme = React.useMemo(() => getTheme(theme), [theme]);
 
   const [flashcardLevel, setFlashcardLevel] = React.useState<string>(
-    sessionStorage.getItem("kanjiLevel") ?? "JLPT N5",
+    sessionStorage.getItem("kanjiLevel") ?? "JLPT 5",
   );
-  const KANJI_API = "http://kanjiapi.dev/v1/";
+  const KANJI_API = "https://kanjiapi.dev/v1/";
+
+  const BORDER_COLOR = (theme) => theme === "dark" ? "#8C8C8C" : "#000"
 
   return (
     <GlobalContext.Provider
-      value={{ theme, setTheme, flashcardLevel, setFlashcardLevel }}
+      value={{ theme, setTheme, flashcardLevel, setFlashcardLevel, KANJI_API }}
     >
       <ThemeProvider theme={visualTheme}>
         <CssBaseline />

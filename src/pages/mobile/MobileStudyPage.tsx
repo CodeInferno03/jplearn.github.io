@@ -11,7 +11,7 @@ import axios from "axios";
 import { shuffleArray } from "../../utils/arrayUtils";
 
 function MobileStudyPage() {
-  const { flashcardLevel, setFlashcardLevel } =
+  const { flashcardLevel, setFlashcardLevel, KANJI_API } =
     React.useContext(GlobalContext)!;
   const [searchParams, setSearchParams] = useSearchParams();
   const [kanjiArr, setKanjiArr] = React.useState<Array<string | undefined>>([]);
@@ -19,15 +19,24 @@ function MobileStudyPage() {
   // Get level from URL and replace
   React.useEffect(() => {
     const levelFromUrl = searchParams.get("level");
-    if (levelFromUrl && levelFromUrl !== flashcardLevel)
+    let url = KANJI_API + "kanji/";
+    console.log(`levelFromUrl: ${levelFromUrl}`)
+    if (levelFromUrl && levelFromUrl !== flashcardLevel) {
       setFlashcardLevel(reformatLevel(levelFromUrl));
+      url += levelFromUrl;
+    } else {
+      url += formatLevel(flashcardLevel);
+    }
 
     axios
-      .get(`http://kanjiapi.dev/v1/kanji/${formatLevel(flashcardLevel)}`, {
+      .get(url, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        setKanjiArr(prev => shuffleArray(response.data));
+        const data = response.data;
+        // console.log(`data: ${JSON.stringify(data)}`);
+        console.log(`url: ${url}`)
+        setKanjiArr((prev) => shuffleArray(data));
       });
 
     // setKanjiArr(levelFromUrl);
@@ -40,9 +49,7 @@ function MobileStudyPage() {
   return (
     <>
       <ReturnButton destination="/flashcards" />
-      {/* <Box sx={{ display: "flex", justifyContent: "center" }}> */}
       <StudyFlashcard />
-      {/* </Box> */}
       <NavigateCardButton />
     </>
   );

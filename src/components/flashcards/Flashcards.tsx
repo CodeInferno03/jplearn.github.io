@@ -9,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 
 import { GlobalContext } from "../../contexts/GlobalContextProvider";
+import { paperBorder } from "../../ui/a11y";
 
 function Flashcards() {
   const navigate = useNavigate();
@@ -21,11 +22,11 @@ function Flashcards() {
   };
 
   const flashcardLevels = [
-    "JLPT N5",
-    "JLPT N4",
-    "JLPT N3",
-    "JLPT N2",
-    "JLPT N1",
+    "JLPT 5",
+    "JLPT 4",
+    "JLPT 3",
+    "JLPT 2",
+    "JLPT 1",
     "Grade 1",
     "Grade 2",
     "Grade 3",
@@ -39,19 +40,21 @@ function Flashcards() {
     "Heisig",
   ];
 
-  const flashcardsMenuSx = {
-    borderRadius: "1em",
-    height: "12em",
-    width: "80%",
-    alignSelf: "center",
-    flexDirection: "column",
-    gap: 1,
-  };
-
-  const flashcardSubtextSx = {
-    width: "80%",
-    color: (theme) => theme.palette.text.secondary,
-  };
+  const flashcardButtonDetails = [
+    {
+      destination: "/flashcards/study",
+      title: "Study",
+      description:
+        "Learn kanji of any level using simple, easy-to-understand flashcards!",
+      specialSx: { mt: 5 },
+    },
+    {
+      destination: "/flashcards/quiz",
+      title: "Quiz",
+      description: "Test your kanji memorization and usage skills!",
+      specialSx: { mt: 1 },
+    },
+  ];
 
   return (
     <Box
@@ -107,37 +110,38 @@ function Flashcards() {
         </Select>
       </Box>
 
-      <Paper
-        component={ButtonBase}
-        elevation={0}
-        sx={{
-          display: "flex",
-          mt: 5,
-          ...flashcardsMenuSx,
-        }}
-        onClick={() => navigate("/flashcards/study")}
-      >
-        <Typography variant="h4">Study</Typography>
-        <Typography sx={{ ...flashcardSubtextSx }}>
-          Learn kanji of any level using simple, easy-to-understand flashcards!
-        </Typography>
-      </Paper>
-
-      <Paper
-        component={ButtonBase}
-        elevation={0}
-        sx={{
-          display: "flex",
-          mt: 1,
-          ...flashcardsMenuSx,
-        }}
-        onClick={() => navigate("/flashcards/quiz")}
-      >
-        <Typography variant="h4">Quiz</Typography>
-        <Typography sx={{ ...flashcardSubtextSx }}>
-          Test your kanji memorization and usage skills!
-        </Typography>
-      </Paper>
+      {flashcardButtonDetails.map((details, i) => (
+        <Paper
+          key={i}
+          component={ButtonBase}
+          elevation={0}
+          sx={{
+            display: "flex",
+            borderRadius: "1em",
+            height: "12em",
+            width: "80%",
+            alignSelf: "center",
+            flexDirection: "column",
+            gap: 1,
+            border: (theme) =>
+              theme.palette.mode == "dark"
+                ? `0.15em solid #8C8C8C`
+                : `0.15em solid #8C8C8C`,
+            ...details.specialSx,
+          }}
+          onClick={() => navigate(details.destination)}
+        >
+          <Typography variant="h4">{details.title}</Typography>
+          <Typography
+            sx={{
+              width: "80%",
+              color: (theme) => theme.palette.text.secondary,
+            }}
+          >
+            {details.description}
+          </Typography>
+        </Paper>
+      ))}
     </Box>
   );
 }
