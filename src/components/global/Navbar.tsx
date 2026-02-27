@@ -3,7 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import TranslateIcon from "@mui/icons-material/Translate";
@@ -46,7 +46,8 @@ function Navbar() {
     width: "2em",
     height: "2em",
     borderRadius: "50%",
-    color: (theme) => theme.palette.text.primary,
+    // color: (theme) => theme.palette.text.secondary,
+    color: "rgba(187, 187, 187, 1)"
   };
 
   return (
@@ -58,7 +59,7 @@ function Navbar() {
           bottom: 0,
           top: "auto",
           backgroundColor: theme.palette.background.default, // blend with page
-          borderTop: `1px solid ${theme.palette.text.primary}`,
+          borderTop: `1px solid rgba(87, 87, 87, 0.35)`,
         })}
       >
         <Toolbar
@@ -70,7 +71,14 @@ function Navbar() {
         >
           {icons.map((details, i) => (
             <Tooltip key={i} title={details.tooltip}>
-              <NavLink to={details.destination}>
+              <Paper
+                elevation={0}
+                sx={{
+                  borderRadius: "50%",
+                  bgcolor: (theme) => theme.palette.background.paper
+                }}
+              >
+                <NavLink to={details.destination}>
                 <IconButton
                   color="inherit"
                   aria-label={details.ariaLabel}
@@ -81,6 +89,7 @@ function Navbar() {
                   {details.icon}
                 </IconButton>
               </NavLink>
+              </Paper>
             </Tooltip>
           ))}
         </Toolbar>

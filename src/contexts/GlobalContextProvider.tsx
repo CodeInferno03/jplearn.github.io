@@ -42,7 +42,7 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
   const [flashcardLevel, setFlashcardLevel] = React.useState<string>(
     sessionStorage.getItem("kanjiLevel") ?? "JLPT 5",
   );
-  const KANJI_API = "https://kanjiapi.dev/v1/";
+  const KANJI_API = "https://kanjiapi.dev/v1";
 
   const BORDER_COLOR = (theme) => theme === "dark" ? "#8C8C8C" : "#000"
 

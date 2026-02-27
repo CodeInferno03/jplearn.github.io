@@ -9,12 +9,12 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const navigate = useNavigate();
 
-  const homePaperStyle = {
-    borderRadius: "1em",
-    alignSelf: "center",
-    height: "12em",
-    width: "80%",
-  };
+  const homeButtons = [
+    { title: "Dictionary", destination: "/dictionary", extraSx: { mt: 5 } },
+    { title: "Flash cards", destination: "/flashcards", extraSx: { mt: 2 } },
+  ];
+
+  const greetings = ["Welcome", "ようこそ"]
 
   return (
     <Box sx={{ width: "100%", display: "flex", flexDirection: "column" }}>
@@ -27,36 +27,32 @@ function Home() {
           textAlign: "center",
         }}
       >
-        {["Welcome", "ようこそ"].map((greeting, i) => (
+        {greetings.map((greeting, i) => (
           <Typography key={i} variant="h2">
             {greeting}
           </Typography>
         ))}
       </Box>
-      <Paper
-        component={ButtonBase}
-        elevation={0}
-        sx={{
-          display: "flex",
-          mt: 5,
-          ...homePaperStyle,
-        }}
-        onClick={() => navigate("/dictionary")}
-      >
-        <Typography variant="h4">Dictionary</Typography>
-      </Paper>
-      <Paper
-        component={ButtonBase}
-        elevation={0}
-        sx={{
-          display: "flex",
-          mt: 2,
-          ...homePaperStyle,
-        }}
-        onClick={() => navigate("/flashcards")}
-      >
-        <Typography variant="h4">Flash Cards</Typography>
-      </Paper>
+
+      {homeButtons.map((details, i) => (
+        <Paper
+          key={i}
+          component={ButtonBase}
+          elevation={0}
+          sx={{
+            display: "flex",
+            borderRadius: "1em",
+            alignSelf: "center",
+            height: "12em",
+            width: "80%",
+            border: "0.15em solid #8c8c8c",
+            ...details.extraSx,
+          }}
+          onClick={() => navigate(details.destination)}
+        >
+          <Typography variant="h4">{details.title}</Typography>
+        </Paper>
+      ))}
     </Box>
   );
 }

@@ -56,6 +56,7 @@ function Flashcards() {
     },
   ];
 
+
   return (
     <Box
       sx={{
@@ -65,10 +66,6 @@ function Flashcards() {
         overflowY: "auto",
       }}
     >
-      <Typography variant="h3" sx={{ mt: 5 }}>
-        Flashcards
-      </Typography>
-
       <Box sx={{ mt: 3 }}>
         <InputLabel sx={{ color: (theme) => theme.palette.text.primary }}>
           Kanji Level
@@ -76,7 +73,7 @@ function Flashcards() {
         <Select
           value={flashcardLevel}
           onChange={selectLevel}
-          sx={{ width: "80%" }}
+          sx={{ width: "80%", mt: 7 }}
           MenuProps={{
             slotProps: {
               paper: {
@@ -89,6 +86,7 @@ function Flashcards() {
                   "&::-webkit-scrollbar": {
                     display: "none",
                   },
+                  bgcolor: (theme) => theme.palette.background.paper
                 },
               },
             },
