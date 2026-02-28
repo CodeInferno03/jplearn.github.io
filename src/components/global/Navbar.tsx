@@ -7,16 +7,10 @@ import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import TranslateIcon from "@mui/icons-material/Translate";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
-import QuizIcon from "@mui/icons-material/Quiz";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import Tooltip from "@mui/material/Tooltip";
 
-import { GlobalContext } from "../../contexts/GlobalContextProvider";
-import { NavLink, useNavigate } from "react-router-dom";
-import { color } from "@mui/system";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const iconFontSize = "large";
